@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          msg: 'Hello World',
+          flag: true
+        }
+      }
+      btnClick () {
+        this.setState({
+          flag: !this.state.flag
+        })
+      }
+      render () {
+        const { msg, flag } = this.state
+        return (
+          < div >
+            <h2>{flag && msg}</h2>
+            <h2 style={{ display: flag ? 'block' : 'none' }}>{msg}</h2>
+            <button onClick={() => this.btnClick()}>条件渲染</button>
+          </div >
+        )
+      }
+    }
+    const root = ReactDOM.createRoot(document.querySelector('#root'));
+    root.render(<App />)
+  </script>
+</body>
+
+</html>
